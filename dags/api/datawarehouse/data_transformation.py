@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta,datetime
 
 def parse_duration(duration_str):
 
@@ -10,18 +10,17 @@ def parse_duration(duration_str):
     for component in components:
         if component in duration_str:
             value,duration_str = duration_str.split(component)
-            values[component]=  int(value)
+            values[component] = int(value)
 
     total_duration = timedelta(
-        days=values["D"],hours=values["H"],minutes=["M"],seconds=values["S"]
+        days=values["D"],hours=values["H"],minutes=values["M"],seconds=values["S"]
     )
 
     return total_duration
 
 def trasform_data(row):
     duration_td = parse_duration(row["Duration"])
-    row['Duration']=(timedelta.min + duration_td).time()
+    row['Duration']=(datetime.min + duration_td).time()
     row['Video_Type'] = 'Shorts' if duration_td.total_seconds() <= 60 else 'Normal'
 
-
-
+    return row

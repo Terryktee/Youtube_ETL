@@ -76,7 +76,7 @@ def core_table():
                     update_rows(cur,conn,schema,trasformed_row)
                 else:
                     insert_rows(cur,conn,schema,trasformed_row)
-        ids_to_delete=set(table_ids)-current_video_ids
+        ids_to_delete=set(table_ids) - current_video_ids
 
         if ids_to_delete:
             delete_rows(cur,conn,schema,ids_to_delete)
